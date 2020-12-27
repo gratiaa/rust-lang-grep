@@ -21,7 +21,9 @@ impl Config {
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
   let contents = fs::read_to_string(config.filename)?;
 
-  println!("With text:\n{}", contents);
+  for line in search(&config.query, &contents) {
+    println!("{}", line);
+  }
 
   Ok(())
 }
@@ -57,5 +59,7 @@ Pick three.";
 }
 
 /*
- TODO: run 함수 안에서 search 함수 사용하기
+ TODO: (커맨드라인 프로그램 작성할 때 도움이 되는 지식들)
+ 1. 환경 변수 다루는 법: 환경 변수로 플래그 받아서 search_case_insensitive 함수
+ 2. standard error 출력하는 법
 */
