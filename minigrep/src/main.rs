@@ -5,7 +5,7 @@ use std::fs;
 fn main() {
   let args: Vec<String> = env::args().collect();
 
-  let config = parse_config(&args);
+  let config = Config::new(&args);
 
   println!("Searching for {}", config.query);
   println!("In file {}", config.filename);
@@ -21,22 +21,18 @@ struct Config {
   filename: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-  /*
-    args 변수의 주인(owner)은 main이며, 이를 parse_config에 빌려주고 있다.
-    Config가 args의 값에 대한 오너십을 가져가려고 한다면, Rust의 규칙을 위반한 셈이 된다.
+/*
+  Config 생성자 만들기
 
-    이를 예방하는 가장 쉬운 방법은 변수에서 clone 메소드를 호출하는 것이다.
-    문자열 데이터 참조값을 저장하는 시간과 메모리 비용보다 지출이 크지만
-    참조의 생명주기를 관리할 필요가 없기 때문에 코드가 매우 직관적이다.
-    -> 약간의 성능을 대가로 단순함을 얻는다.
+  이전 parse_config의 역할은 Config 인스턴스를 생성하는 것이다.
+  Config struct와의 관계성 설정을 위해 따라서 함수 이름을 new로 바꾼다.
+  그러면 String::new와 같이 관용적인 코드가 만들어진다.
+*/
+impl Config {
+  fn new(args: &[String]) -> Config {
+    let query = args[1].clone();
+    let filename = args[2].clone();
 
-    그렇지만 clone을 사용하는 것은 많은 러스트 사용자들이 지양하고 있는 방법인데, 런타임 비용이기 때문이다.
-    13장에서 이보다 더 효율적인 방법에 대해 알아본다.
-    여기서는 파일명과 쿼리 문자열이 아주 작고, 복사본을 한번만 사용하기 때문에 그냥 한다.
-  */
-  let query = args[1].clone();
-  let filename = args[2].clone();
-
-  Config { query, filename }
+    Config { query, filename }
+  }
 }
