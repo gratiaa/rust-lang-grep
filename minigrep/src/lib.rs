@@ -26,14 +26,17 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
   Ok(())
 }
 
-/*
-  lifetime 파라미터를 사용하여 인자의 lifetime을 리턴 값 lifetime과 연결한다.
-  -> 중요: Rust로 하여금 search 함수가 반환한 데이터는 contents 인자로 넘어간 데이터의 생애와 같다고 알려주는 것.
-
-  Quiz: lifetime 어노테이션 없이 컴파일하면 어떻게 될까?
-*/
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  vec![]
+  let mut results = Vec::new();
+
+  // lines()는 iterator를 반환한다. (iterator에 대해서는 13장에서 자세히 설명)
+  for line in contents.lines() {
+    if line.contains(query) {
+      results.push(line);
+    }
+  }
+
+  results
 }
 
 // 'cargo test'로 실행
@@ -54,5 +57,5 @@ Pick three.";
 }
 
 /*
- TODO: 테스트 코드 통과
+ TODO: run 함수 안에서 search 함수 사용하기
 */
