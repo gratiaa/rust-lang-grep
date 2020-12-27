@@ -36,3 +36,8 @@ impl Config {
     Config { query, filename }
   }
 }
+
+/*
+  Quiz: 'cargo run'을 실행하면 어떤 에러메시지가 나올까요?
+  이 메시지는 여러분에게 도움이 되는 정보인가요?
+*/
