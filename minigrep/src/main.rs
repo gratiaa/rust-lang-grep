@@ -1,4 +1,5 @@
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
 
@@ -13,17 +14,20 @@ fn main() {
   println!("Searching for {}", config.query);
   println!("In file {}", config.filename);
 
-  run(config);
+  // Quiz: 왜 unwrap_or_else를 안 썼을까요?
+  if let Err(e) = run(config) {
+    println!("Application error: {}", e);
+
+    process::exit(1);
+  }
 }
 
-/*
-  main 함수에서 실행 로직을 분리한다.
-*/
-fn run(config: Config) {
-  let contents =
-    fs::read_to_string(config.filename).expect("Something went wrong while reading the file");
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+  let contents = fs::read_to_string(config.filename)?;
 
   println!("With text:\n{}", contents);
+
+  Ok(())
 }
 
 struct Config {
@@ -44,5 +48,5 @@ impl Config {
 }
 
 /*
-  TODO: run 에러 처리 보충
+  TODO: Library Create로 코드 분리
 */
