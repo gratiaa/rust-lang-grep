@@ -37,3 +37,11 @@ fn parse_config(args: &[String]) -> (&str, &str) {
 
   (query, filename)
 }
+
+/*
+  문제: 위 코드에서 리팩토링 스멜이 나는 부분은?
+
+  답: https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#grouping-configuration-values
+
+  * 토막 상식: primitive obsession
+*/
