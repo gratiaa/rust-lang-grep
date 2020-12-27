@@ -22,14 +22,15 @@ struct Config {
 }
 
 /*
-  Config 생성자 만들기
+  에러 메시지 개선
 
-  이전 parse_config의 역할은 Config 인스턴스를 생성하는 것이다.
-  Config struct와의 관계성 설정을 위해 따라서 함수 이름을 new로 바꾼다.
-  그러면 String::new와 같이 관용적인 코드가 만들어진다.
+  이제 다시 'cargo run' 해보세요!
 */
 impl Config {
   fn new(args: &[String]) -> Config {
+    if args.len() < 3 {
+      panic!("not enough arguments")
+    }
     let query = args[1].clone();
     let filename = args[2].clone();
 
@@ -38,6 +39,5 @@ impl Config {
 }
 
 /*
-  Quiz: 'cargo run'을 실행하면 어떤 에러메시지가 나올까요?
-  이 메시지는 여러분에게 도움이 되는 정보인가요?
+  TODO: 9장에서 배운 Result 반환을 코드에 적용해보기
 */
