@@ -25,6 +25,8 @@ fn main() {
     debug formatter :?를 사용하여 벡터를 출력한다.
     1. 먼저 'cargo run'을 실행해 본다.
     2. 그 다음, 'cargo run needle haystack'을 실행해 본다.
+    
+    -> quiz: vector의 첫 번째 값은 뭘까요?
     */
     println!("{:?}", args);
 }
