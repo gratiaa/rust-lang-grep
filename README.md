@@ -10,6 +10,8 @@ This is the demo project from the book ['The Rust Programming Language'](https:/
 
 ## Contents
 
+- Explore step-by-step [commits](https://github.com/gratiaa/rust-lang-grep/network)
+
 ### 12-1. Accepting Command Line Arguments
 
 - [Book Link](https://doc.rust-lang.org/book/ch12-02-reading-a-file.html)

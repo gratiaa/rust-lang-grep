@@ -109,12 +109,3 @@ Trust me.";
     );
   }
 }
-
-/*
- TODO:
- - standard output 대신에 standard error로 에러 메시지 출력하기
-  - println! 매크로는 standard output만 사용 가능하다.
-  - 다음 명령어를 실행해보자: cargo run > output.txt
-    - >를 사용하면 standard output으로 하여금 컨텐츠를 output.txt에 넣도록 한다.
-    - 에러 메시지는 standard output을 통해 파일 생성 말고, 따로 출력되게 하고 싶다!
-*/
