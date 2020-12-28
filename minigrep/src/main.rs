@@ -9,7 +9,9 @@ use std::process;
 mod lib;
 use lib::Config;
 
-// 다음 명령어로 실행해보기: cargo run the poem.txt
+// 다음 명령어로 실행해보기: export CASE_INSENSITIVE=1; cargo run to poem.txt
+// 설정된 환경 변수 확인: echo $CASE_INSENSITIVE
+// 환경 변수 shell에서 제거: unset CASE_INSENSITIVE
 fn main() {
   let args: Vec<String> = env::args().collect();
   let config = Config::new(&args).unwrap_or_else(|err| {
@@ -18,7 +20,7 @@ fn main() {
   });
 
   println!("Searching for {}", config.query);
-  println!("In file {}", config.filename);
+  println!("In file {}\n===================", config.filename);
 
   if let Err(e) = lib::run(config) {
     println!("Application error: {}", e);
