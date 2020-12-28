@@ -41,6 +41,21 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
   results
 }
 
+pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+  // to_lowercase(): query를 전부 소문자로 변환한다. 호출하면 기존 데이터를 참조하는 대신, 새로운 데이터를 만든다.
+  let query = query.to_lowercase();
+  let mut results = Vec::new();
+
+  for line in contents.lines() {
+    // contains는 string slice를 받도록 정의되어 있기 때문에 &를 앞에 붙여야 한다.
+    if line.to_lowercase().contains(&query) {
+      results.push(line)
+    }
+  }
+
+  results
+}
+
 // 'cargo test'로 실행
 #[cfg(test)]
 mod tests {
